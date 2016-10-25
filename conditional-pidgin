@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DAY=$(date +%a)
+HOUR=$(date +%H)
+
+if [ $DAY != 'Sat' ] && [ $DAY != 'Sun' ] && [ $HOUR -ge 8 ] && [ $HOUR -lt 17 ] ; then
+	/usr/bin/pidgin &
+fi
