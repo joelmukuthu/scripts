@@ -18,6 +18,10 @@ this one documents itself :)
 #### p
 enhanced `cd`. ripped from https://github.com/gustavnikolaj/dotfiles.
 
+#### load-nvmrc
+loads the node version set through a local `.nvmrc` and defaults to the default
+node version. also from https://github.com/gustavnikolaj/dotfiles.
+
 Sample `.bashrc`:
 
 ```bash
@@ -25,19 +29,10 @@ Sample `.bashrc`:
 . ~/Projects/scripts/git-purge-local-branches.sh
 . ~/Projects/scripts/list-installed.sh
 . ~/Projects/scripts/p.sh
-
-load-nvmrc() {
-    if [ -f .nvmrc ] ; then
-        nvm use || nvm install
-    elif [[ $(nvm version) != $(nvm version default) ]] ; then
-        echo "nvm: Reverting to default node version."
-        nvm use default
-    fi
-}
-
-load-nvmrc # attempt to load appropriate node version
+. ~/Projects/scripts/load-nvmrc.sh
 
 export PHOOK_CD=$PHOOK_CD:load-nvmrc # set up hook for p
 
+load-nvmrc # attempt to load appropriate node version
 hali # show some weather!
 ```
