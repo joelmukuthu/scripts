@@ -29,6 +29,7 @@ Sample `.bashrc`:
 . ~/Projects/scripts/git-purge-local-branches.sh
 . ~/Projects/scripts/list-installed.sh
 . ~/Projects/scripts/p.sh
+. ~/Projects/scripts/nr.sh
 . ~/Projects/scripts/load-nvmrc.sh
 
 export PHOOK_CD=$PHOOK_CD:load-nvmrc # set up hook for p
