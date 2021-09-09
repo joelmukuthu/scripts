@@ -5,6 +5,7 @@ export PROJECTS_DIR=~/Projects
 export GAN_PROJECTS_DIR=~/Projects/@ganintegrity
 export KNORM_PROJECTS_DIR=~/Projects/@knorm
 export UNEXPECTED_PROJECTS_DIR=~/Projects/@unexpected
+export UPRIGHT_PROJECTS_DIR=~/Projects/@upright
 export PHOOK_CD=p_set_title:$PHOOK_CD
 
 function p_set_title() {
@@ -84,6 +85,12 @@ function _u_projects_complete_() {
     COMPREPLY=($(compgen -W "$projectdirs" -- "${word}"))
 }
 
+function _up_projects_complete_() {
+    local word=${COMP_WORDS[COMP_CWORD]}
+    local projectdirs=$(find $UPRIGHT_PROJECTS_DIR -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | tr '\n' ' ')
+    COMPREPLY=($(compgen -W "$projectdirs" -- "${word}"))
+}
+
 function p() {
     p_find $PROJECTS_DIR "$@"
 }
@@ -100,7 +107,12 @@ function u() {
     p_find $UNEXPECTED_PROJECTS_DIR "$@"
 }
 
+function up() {
+    p_find $UPRIGHT_PROJECTS_DIR "$@"
+}
+
 complete -F _p_projects_complete_ p
 complete -F _k_projects_complete_ k
 complete -F _g_projects_complete_ g
 complete -F _u_projects_complete_ u
+complete -F _up_projects_complete_ up
